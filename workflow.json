@@ -1,0 +1,350 @@
+{
+  "id": "tpl-2327338480",
+  "name": "Payments Reconciliation Engine with SWIFT Gateway",
+  "description": "Payments Reconciliation Engine with SWIFT Gateway underwrites transactions and prices customer profiles; applies decision gates and observability; orchestrates via Payment Hub to optimize liquidity.",
+  "industry": "Banking & Finance",
+  "pattern": "RAG",
+  "complexity": "Expert",
+  "rating": 4.5,
+  "downloads": 4559,
+  "favorites": 74,
+  "executionTime": "16 min",
+  "tags": [
+    "credit",
+    "kyc",
+    "rag",
+    "banking"
+  ],
+  "steps": [
+    {
+      "id": "intake",
+      "name": "Customer Intake",
+      "description": "Collect, validate and normalize positions from SWIFT Gateway; attach a runId and timestamp for traceability."
+    },
+    {
+      "id": "retrieve-0",
+      "name": "Retrieve",
+      "description": "Execute retrieve phase for the RAG pattern: persist interim state, enforce guardrails, and emit structured JSON results."
+    },
+    {
+      "id": "ground-1",
+      "name": "Ground",
+      "description": "Execute ground phase for the RAG pattern: persist interim state, enforce guardrails, and emit structured JSON results."
+    },
+    {
+      "id": "sanctions-screening-0",
+      "name": "Sanctions Screening",
+      "description": "Sanctions Screening across joined datasets; branch on thresholds using decision gates; write metrics (success/error counts) for observability."
+    },
+    {
+      "id": "limit-control-1",
+      "name": "Limit Control",
+      "description": "Limit Control across joined datasets; branch on thresholds using decision gates; write metrics (success/error counts) for observability."
+    },
+    {
+      "id": "underwriting-2",
+      "name": "Underwriting",
+      "description": "Underwriting across joined datasets; branch on thresholds using decision gates; write metrics (success/error counts) for observability."
+    },
+    {
+      "id": "risk-scoring-3",
+      "name": "Risk Scoring",
+      "description": "Risk Scoring across joined datasets; branch on thresholds using decision gates; write metrics (success/error counts) for observability."
+    },
+    {
+      "id": "finalize",
+      "name": "Reconciliation Summary",
+      "description": "Assemble final payload with status, artifacts, KPIs and audit trail; store to Case Management; return response JSON for the client."
+    }
+  ],
+  "nodes": [
+    {
+      "id": "intake",
+      "type": "agentbridge",
+      "data": {
+        "label": "Customer Intake",
+        "description": "Collect, validate and normalize positions from SWIFT Gateway; attach a runId and timestamp for traceability.",
+        "nodeType": "input",
+        "category": "ai-models",
+        "executionMode": "autonomous"
+      },
+      "position": {
+        "x": 60,
+        "y": 120
+      }
+    },
+    {
+      "id": "retrieve-0",
+      "type": "agentbridge",
+      "data": {
+        "label": "Retrieve",
+        "description": "Execute retrieve phase for the RAG pattern: persist interim state, enforce guardrails, and emit structured JSON results.",
+        "nodeType": "llm",
+        "category": "ai-models",
+        "executionMode": "autonomous"
+      },
+      "position": {
+        "x": 310,
+        "y": 120
+      }
+    },
+    {
+      "id": "ground-1",
+      "type": "agentbridge",
+      "data": {
+        "label": "Ground",
+        "description": "Execute ground phase for the RAG pattern: persist interim state, enforce guardrails, and emit structured JSON results.",
+        "nodeType": "llm",
+        "category": "ai-models",
+        "executionMode": "autonomous"
+      },
+      "position": {
+        "x": 560,
+        "y": 120
+      }
+    },
+    {
+      "id": "sanctions-screening-0",
+      "type": "agentbridge",
+      "data": {
+        "label": "Sanctions Screening",
+        "description": "Sanctions Screening across joined datasets; branch on thresholds using decision gates; write metrics (success/error counts) for observability.",
+        "nodeType": "llm",
+        "category": "ai-models",
+        "executionMode": "autonomous"
+      },
+      "position": {
+        "x": 810,
+        "y": 120
+      }
+    },
+    {
+      "id": "limit-control-1",
+      "type": "agentbridge",
+      "data": {
+        "label": "Limit Control",
+        "description": "Limit Control across joined datasets; branch on thresholds using decision gates; write metrics (success/error counts) for observability.",
+        "nodeType": "llm",
+        "category": "ai-models",
+        "executionMode": "autonomous"
+      },
+      "position": {
+        "x": 1060,
+        "y": 120
+      }
+    },
+    {
+      "id": "underwriting-2",
+      "type": "agentbridge",
+      "data": {
+        "label": "Underwriting",
+        "description": "Underwriting across joined datasets; branch on thresholds using decision gates; write metrics (success/error counts) for observability.",
+        "nodeType": "llm",
+        "category": "ai-models",
+        "executionMode": "autonomous"
+      },
+      "position": {
+        "x": 1310,
+        "y": 120
+      }
+    },
+    {
+      "id": "risk-scoring-3",
+      "type": "agentbridge",
+      "data": {
+        "label": "Risk Scoring",
+        "description": "Risk Scoring across joined datasets; branch on thresholds using decision gates; write metrics (success/error counts) for observability.",
+        "nodeType": "llm",
+        "category": "ai-models",
+        "executionMode": "autonomous"
+      },
+      "position": {
+        "x": 1560,
+        "y": 120
+      }
+    },
+    {
+      "id": "finalize",
+      "type": "agentbridge",
+      "data": {
+        "label": "Reconciliation Summary",
+        "description": "Assemble final payload with status, artifacts, KPIs and audit trail; store to Case Management; return response JSON for the client.",
+        "nodeType": "output",
+        "category": "ai-models",
+        "executionMode": "autonomous"
+      },
+      "position": {
+        "x": 1810,
+        "y": 120
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge-0",
+      "source": "intake",
+      "target": "retrieve-0",
+      "type": "agentbridge",
+      "data": {
+        "label": "flow"
+      }
+    },
+    {
+      "id": "edge-1",
+      "source": "retrieve-0",
+      "target": "ground-1",
+      "type": "agentbridge",
+      "data": {
+        "label": "flow"
+      }
+    },
+    {
+      "id": "edge-2",
+      "source": "ground-1",
+      "target": "sanctions-screening-0",
+      "type": "agentbridge",
+      "data": {
+        "label": "flow"
+      }
+    },
+    {
+      "id": "edge-3",
+      "source": "sanctions-screening-0",
+      "target": "limit-control-1",
+      "type": "agentbridge",
+      "data": {
+        "label": "flow"
+      }
+    },
+    {
+      "id": "edge-4",
+      "source": "limit-control-1",
+      "target": "underwriting-2",
+      "type": "agentbridge",
+      "data": {
+        "label": "flow"
+      }
+    },
+    {
+      "id": "edge-5",
+      "source": "underwriting-2",
+      "target": "risk-scoring-3",
+      "type": "agentbridge",
+      "data": {
+        "label": "flow"
+      }
+    },
+    {
+      "id": "edge-6",
+      "source": "risk-scoring-3",
+      "target": "finalize",
+      "type": "agentbridge",
+      "data": {
+        "label": "flow"
+      }
+    }
+  ],
+  "preview": "Customer Intake → Retrieve → Ground → Sanctions Screening → Limit Control → Underwriting → Risk Scoring → Reconciliation Summary",
+  "featured": true,
+  "createdAt": "2025-10-05T10:01:54.167Z",
+  "author": "AgentBridge Team",
+  "deployments": 497,
+  "lastDeployed": "2026-04-15T12:00:12.554Z",
+  "configuration": {
+    "provider": "nvidia",
+    "region": "us-west-2",
+    "compute": "gpu-single"
+  },
+  "healthStatus": "degraded",
+  "deploymentCount": 237,
+  "githubRepo": "https://github.com/agentbridge/payments-reconciliation-engine-with-swift-gateway",
+  "maintainer": "AgentBridge Team",
+  "agenticLayers": {
+    "reasoning": {
+      "modelType": "gpt-4o",
+      "reasoningPattern": "ReAct",
+      "contextWindow": 128000,
+      "memorySystem": "hybrid",
+      "decisionFramework": "Multi-Criteria Decision Analysis"
+    },
+    "orchestration": {
+      "workflowEngine": "n8n",
+      "coordinationPattern": "centralized",
+      "failoverStrategy": "retry",
+      "loadBalancing": "intelligent"
+    },
+    "protocol": {
+      "communicationProtocol": "MCP",
+      "messageFormat": "JSON",
+      "authenticationMethod": "OAuth2",
+      "encryptionStandard": "AES-256"
+    },
+    "governance": {
+      "policyEngine": "OPA",
+      "complianceStandards": [
+        "SOC2",
+        "GDPR"
+      ],
+      "auditTrail": true,
+      "riskAssessment": "medium",
+      "dataClassification": "internal"
+    },
+    "observability": {
+      "metricsCollection": "Prometheus",
+      "loggingFramework": "ELK",
+      "tracingSystem": "Jaeger",
+      "alertingRules": [],
+      "dashboardConfig": {
+        "layout": "grid",
+        "widgets": [
+          "metrics",
+          "logs",
+          "traces"
+        ],
+        "refreshInterval": 30
+      }
+    },
+    "intelligence": {
+      "learningCapability": "online",
+      "knowledgeBase": "vector-db",
+      "adaptationMechanism": "ml-based",
+      "performanceOptimization": "ai-driven"
+    }
+  },
+  "businessFunction": "data-preparation-node",
+  "autonomyLevel": "semi-autonomous",
+  "cognitiveCapabilities": [
+    {
+      "name": "Pattern Recognition",
+      "description": "Identifies patterns in business processes",
+      "confidenceLevel": 0.85,
+      "lastUpdated": "2026-04-16T10:01:54.206Z"
+    }
+  ],
+  "roiMetrics": {
+    "costSavings": 102046,
+    "timeReduction": 82,
+    "accuracyImprovement": 39,
+    "throughputIncrease": 44,
+    "errorReduction": 30
+  },
+  "complianceFramework": {
+    "standards": [
+      "SOC2",
+      "GDPR",
+      "ISO27001"
+    ],
+    "certifications": [
+      "SOC2 Type II"
+    ],
+    "auditFrequency": "monthly",
+    "lastAudit": "2026-01-24T23:18:18.591Z"
+  },
+  "scalingPolicy": {
+    "minInstances": 1,
+    "maxInstances": 10,
+    "scaleUpThreshold": 80,
+    "scaleDownThreshold": 20,
+    "cooldownPeriod": 300
+  }
+}
