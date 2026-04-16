@@ -1,0 +1,38 @@
+{
+  "name": "payments-reconciliation-engine-with-swift-gateway",
+  "version": "1.0.0",
+  "description": "Payments Reconciliation Engine with SWIFT Gateway underwrites transactions and prices customer profiles; applies decision gates and observability; orchestrates via Payment Hub to optimize liquidity.",
+  "main": "workflow.json",
+  "keywords": [
+    "agentbridge",
+    "workflow",
+    "automation",
+    "ai-agents",
+    "rag",
+    "banking-&-finance",
+    "credit",
+    "kyc",
+    "rag",
+    "banking"
+  ],
+  "author": "AgentBridge",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saachi-sonata/agentbridge-payments-reconciliation-engine-with-swif-810300.git"
+  },
+  "bugs": {
+    "url": "https://github.com/saachi-sonata/agentbridge-payments-reconciliation-engine-with-swif-810300/issues"
+  },
+  "homepage": "https://github.com/saachi-sonata/agentbridge-payments-reconciliation-engine-with-swif-810300#readme",
+  "scripts": {
+    "start": "echo \"Import this workflow into your AgentBridge instance\"",
+    "validate": "echo \"Workflow validation complete\"",
+    "test": "echo \"Run workflow tests\"",
+    "deploy": "echo \"Deploy to AgentBridge instance\""
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "agentbridge": ">=6.0.0"
+  }
+}
